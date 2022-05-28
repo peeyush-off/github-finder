@@ -1,10 +1,24 @@
 import React from 'react'
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
+import MainContent from './components/MainContent'
+import Footer from './components/Footer'
+import Navbar from './components/Navbar'
+import PageNotFound from './components/PageNotFound'
+import About from './components/About'
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+    <>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<MainContent />} />
+          <Route exact path='/about' exa element={<About />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   )
 }
 
