@@ -6,7 +6,7 @@ function About() {
         <>
         <div className='flex items-center text-center'>
             <div className='w-2/6'>
-                <h1 class="mb-5 text-5xl font-bold">Github finder</h1>
+                <h1 className="mb-5 text-5xl font-bold">Github finder</h1>
                 <p className="py-6">App to search Github users and look at user profiles</p>
                 <p className='badge badge-lg'>Version: 1.0.0</p>
             </div>

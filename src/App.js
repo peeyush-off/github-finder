@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import MainContent from './components/MainContent'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import PageNotFound from './components/PageNotFound'
 import About from './components/About'
+import UserProfileContext from '../src/context/UserProfileContext'
 
 function App() {
+
+  const { theme } = useContext(UserProfileContext)
+
   return (
-    <>
+
+    <div data-theme={theme}>
       <Router>
         <Navbar />
         <Routes>
@@ -18,7 +23,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </>
+    </div>
   )
 }
 
