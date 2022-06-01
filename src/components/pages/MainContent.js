@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import Search from './shared/Search'
-import Searchcontent from './shared/Searchcontent'
-import GithubContext from '../context/Github/GithubContext'
-import AlertContext from '../context/Alert/AlertContext'
+import Search from '../shared/Search'
+import Searchcontent from '../shared/Searchcontent'
+import GithubContext from '../../context/Github/GithubContext'
+import AlertContext from '../../context/Alert/AlertContext'
 
 function MainContent() {
   const { users, loading, setLoading, getUsers, clearUsers } = useContext(GithubContext)

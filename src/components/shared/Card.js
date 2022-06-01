@@ -1,9 +1,16 @@
-import { AiOutlineDoubleRight } from 'react-icons/ai';
+import { AiOutlineDoubleRight } from 'react-icons/ai'
+import { useNavigate } from "react-router-dom"
 
 function Card({ imageLink, userName, profileDetailsURL }) {
+
+    const navigate = useNavigate()
+
+    const goToUserProfile = (userName) => {
+        navigate(`/user/${userName}`)
+    }
     return (
-        <div className="card w-96 bg-base-100 shadow-xl image-full m-10 cursor-pointer transform transition duration-500 hover:scale-110 group">
-            <figure><img className='h-96' src={imageLink} alt="avatar" /></figure>
+        <div onClick={() => goToUserProfile(userName)} className="card w-72 bg-base-100 shadow-xl cursor-pointer image-full m-10 transform transition duration-500 hover:scale-110 group">
+            <figure><img className='h-32' src={imageLink} alt="avatar" /></figure>
             <div className="card-body justify-between">
                 <h2 className="card-title">{userName}</h2>
                 <div className="card-actions justify-end">

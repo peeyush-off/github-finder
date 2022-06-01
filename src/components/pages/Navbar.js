@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import ThemeSelector from './shared/ThemeSelector'
-import UserProfileContext from '../context/UserProfile/UserProfileContext'
+import ThemeSelector from '../shared/ThemeSelector'
+import UserProfileContext from '../../context/UserProfile/UserProfileContext'
 
 function Navbar() {
 
