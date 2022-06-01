@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import UserProfileContext from '../../context/UserProfileContext'
+import UserProfileContext from '../../context/UserProfile/UserProfileContext'
 
 function ThemeSelector() {
     let themeTypes = ["light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"]

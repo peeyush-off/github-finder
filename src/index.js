@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { UserProfileContextProvider } from '../src/context/UserProfileContext'
+import { UserProfileContextProvider } from './context/UserProfile/UserProfileContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

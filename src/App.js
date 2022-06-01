@@ -5,7 +5,8 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import PageNotFound from './components/PageNotFound'
 import About from './components/About'
-import UserProfileContext from '../src/context/UserProfileContext'
+import UserProfileContext from './context/UserProfile/UserProfileContext'
+import { GithubContextProvider } from './context/Github/GithubContext'
 
 function App() {
 
@@ -15,13 +16,15 @@ function App() {
 
     <div data-theme={theme}>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<MainContent />} />
-          <Route exact path='/about' exa element={<About />} />
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-        <Footer />
+        <GithubContextProvider>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<MainContent />} />
+            <Route exact path='/about' exa element={<About />} />
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+          <Footer />
+        </GithubContextProvider>
       </Router>
     </div>
   )
