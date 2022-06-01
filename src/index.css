@@ -5,3 +5,24 @@
 .main-container-height {
     min-height: calc(100vh - 290px);
 }
+
+.alert-error {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--er) / var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--erc, var(--nc)) / var(--tw-text-opacity));
+}
+
+.alert-info {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--in) / var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--inc, var(--nc)) / var(--tw-text-opacity));
+}
+
+.alert-warning {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--wa) / var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--wac, var(--nc)) / var(--tw-text-opacity));
+}

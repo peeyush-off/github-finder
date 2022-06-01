@@ -1,21 +1,29 @@
 import {useState, useContext} from 'react'
+import AlertContext from '../../context/Alert/AlertContext'
 import GithubContext from '../../context/Github/GithubContext'
 
 
-function Serach() {
+function Search() {
 
   const [text, setText] = useState('')
 
   const {setLoading, getUsers, clearUsers} = useContext(GithubContext)
+  const {displayAlert} = useContext(AlertContext)
   
   const onUpdateText = (event) => {
     setText(event.target.value)
   }
 
   const onSubmit = (event) => {
+    event.preventDefault()
+    clearUsers()
+    if(text === '') {
+      displayAlert('Username cannot be empty', 'error', 'top-center')
+      return
+    }
     setLoading()
     getUsers(text)
-    event.preventDefault()
+    
   }
 
   const onClear = () => {
@@ -32,4 +40,4 @@ function Serach() {
   )
 }
 
-export default Serach
+export default Search

@@ -7,6 +7,7 @@ import PageNotFound from './components/PageNotFound'
 import About from './components/About'
 import UserProfileContext from './context/UserProfile/UserProfileContext'
 import { GithubContextProvider } from './context/Github/GithubContext'
+import Alert from './components/shared/Alert'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
     <div data-theme={theme}>
       <Router>
         <GithubContextProvider>
+          <Alert />
           <Navbar />
           <Routes>
             <Route path='/' element={<MainContent />} />
