@@ -3,7 +3,7 @@ import UserProfileReducer from './UserProfileReducer'
 
 const UserProfileContext = createContext()
 
-export const UserProfileContextProvider = ({children}) => {
+export const UserProfileContextProvider = ({ children }) => {
 
     const initialState = {
         theme: 'dark'
@@ -12,17 +12,17 @@ export const UserProfileContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(UserProfileReducer, initialState)
 
     function updateTheme(themeName) {
-        dispatch( {
+        dispatch({
             type: 'SET_THEME',
             payload: themeName
         })
     }
 
-    return(
+    return (
         <UserProfileContext.Provider value={{
             updateTheme,
             theme: state.theme
-            }}>
+        }}>
             {children}
         </UserProfileContext.Provider>
     )

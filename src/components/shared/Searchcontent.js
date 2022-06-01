@@ -1,12 +1,8 @@
-import { useContext } from 'react'
-import GithubContext from '../../context/Github/GithubContext'
+
 import Card from './Card'
 import Spinner from './Spinner'
 
-function Searchcontent() {
-
-  const { users, loading } = useContext(GithubContext)
-
+function Searchcontent({ users, loading }) {
 
   return (
     loading ?

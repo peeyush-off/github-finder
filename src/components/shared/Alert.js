@@ -1,13 +1,12 @@
-import { useContext } from 'react'
-import AlertContext from '../../context/Alert/AlertContext'
+
 import { ReactComponent as DefaultAlertSVG } from '../../res/img/alert/default.svg'
 import { ReactComponent as ErrorAlertSVG } from '../../res/img/alert/error.svg'
 import { ReactComponent as WarningAlertSVG } from '../../res/img/alert/warning.svg'
 import { ReactComponent as InfoAlertSVG } from '../../res/img/alert/info.svg'
 import { ReactComponent as SuccessAlertSVG } from '../../res/img/alert/success.svg'
 
-function Alert() {
-    const { showAlert, alertMessage, alertType, alertPositionCssClasses } = useContext(AlertContext)
+function Alert({ options: { showAlert, alertMessage, alertType, alertPositionCssClasses } }) {
+
 
     const getSVG = () => {
         switch (alertType) {

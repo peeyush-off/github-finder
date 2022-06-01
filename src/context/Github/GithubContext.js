@@ -12,7 +12,7 @@ const github = axios.create({
     headers: { Authorization: `token ${GITHUB_TOKEN}` },
 })
 
-export const GithubContextProvider = ({children}) => {
+export const GithubContextProvider = ({ children }) => {
 
     let initialState = {
         users: [],

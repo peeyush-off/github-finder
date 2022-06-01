@@ -3,7 +3,7 @@ import AlertReducer from "./AlertReducer";
 
 const AlertContext = createContext()
 
-export const AlertContextProvider = ({children}) => {
+export const AlertContextProvider = ({ children }) => {
 
     let initialState = {
         showAlert: false,
@@ -13,14 +13,14 @@ export const AlertContextProvider = ({children}) => {
         alertType: 'error'
     }
 
-    const [state, dispatch] = useReducer(AlertReducer ,initialState)
+    const [state, dispatch] = useReducer(AlertReducer, initialState)
 
     const displayAlert = (message, alertType = '', alertPosition = 'bottom-center') => {
         console.log(alertType)
-        dispatch({type: 'DISPLAY_ALERT', payload: {message, alertType, alertPosition}})
-        setTimeout(() => dispatch({type: 'REMOVE_ALERT'}), 3000)
+        dispatch({ type: 'DISPLAY_ALERT', payload: { message, alertType, alertPosition } })
+        setTimeout(() => dispatch({ type: 'REMOVE_ALERT' }), 3000)
     }
-    
+
     return (
         <AlertContext.Provider value={{
             showAlert: state.showAlert,
