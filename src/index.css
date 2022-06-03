@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .main-container-height {
-    min-height: calc(100vh - 290px);
+    min-height: calc(100vh - 288px);
 }
 
 .alert-error {

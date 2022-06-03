@@ -3,7 +3,7 @@ import AboutImg from '../../res/img/about.svg'
 
 function About() {
     return (
-        <div className='flex flex-col md:flex-row items-center text-center'>
+        <div className='flex flex-col md:flex-row items-center text-center main-container-height'>
             <div className='w-full md:w-2/6 mt-20 md:mt-0'>
                 <h1 className="mb-5 text-5xl font-bold">Github finder</h1>
                 <p className="py-6">App to search Github users and look at user profiles</p>
