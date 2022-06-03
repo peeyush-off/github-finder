@@ -2,25 +2,49 @@ import { useEffect, useContext } from 'react'
 import Spinner from '../shared/Spinner'
 import Repo from '../shared/Repo'
 import { Link, useParams } from 'react-router-dom'
-import {FaUsers, FaUserFriends, FaStore, FaCodepen} from 'react-icons/fa'
+import { FaUsers, FaUserFriends, FaStore, FaCodepen } from 'react-icons/fa'
+import { getUserAndRepos } from '../../context/Github/GithubAction'
 
 import GithubContext from '../../context/Github/GithubContext'
+
+function validateURL(link) {
+    if (link.indexOf("http://") == 0 || link.indexOf("https://") == 0) {
+        return link
+    }
+    return `https://${link}`
+}
+
 
 function User() {
 
     const githubContext = useContext(GithubContext)
 
     const params = useParams()
-    const { getUser, loading, user, repos, getUserRepos } = githubContext
+    const { loading, user, repos, dispatch } = githubContext
 
     useEffect(() => {
-        getUser(params.login)
-        getUserRepos(params.login)
+        setLoading()
+        getUserAndReposData(params.login)
+
     }, [])
+
+    const getUserAndReposData = async (login) => {
+
+        const userData = await getUserAndRepos(login)
+        dispatch({
+            type: 'GET_USER_AND_REPOS',
+            payload: userData
+        })
+    }
+
+    const setLoading = () => {
+        dispatch({
+            type: 'SET_LOADING'
+        })
+    }
 
     const {
         name,
-        company,
         avatar_url,
         location,
         bio,
@@ -36,12 +60,16 @@ function User() {
         twitter_username
     } = user
 
-    if (loading) return <Spinner />
+    if (loading) return (
+        <div className='flex items-center justify-center min-h-screen'>
+            <Spinner />
+        </div>
+    )
 
     return (
 
         <>
-            <div className="w-full mx-auto lg:w-10/12">
+            <div className="w-full mx-auto lg:w-10/12 mb-8">
                 <div className="mb-4">
                     <Link to='/' className='btn btn-ghost'>
                         Back To Search
@@ -98,7 +126,7 @@ function User() {
                                 <div className="stat">
                                     <div className="stat-title text-md">Website</div>
                                     <div className="stat-value text-lg">
-                                        <a href={`https://${blog}`} target='_blank' rel='noreferrer'>
+                                        <a href={validateURL(blog)} target='_blank' rel='noreferrer'>
                                             {blog}
                                         </a>
                                     </div>
@@ -123,7 +151,7 @@ function User() {
                 <div className="w-full py-5 mb-6 rounded-lg shadow-md bg-base-100 stats">
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                            <FaUsers className ="text-3xl md:text-5xl" />
+                            <FaUsers className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Followers
@@ -134,7 +162,7 @@ function User() {
                     </div>
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                            <FaUserFriends className ="text-3xl md:text-5xl" />
+                            <FaUserFriends className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Following
@@ -145,7 +173,7 @@ function User() {
                     </div>
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                            <FaCodepen className ="text-3xl md:text-5xl" />
+                            <FaCodepen className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Public Repos
@@ -156,7 +184,7 @@ function User() {
                     </div>
                     <div className="stat">
                         <div className="stat-figure text-secondary">
-                            <FaStore className ="text-3xl md:text-5xl" />
+                            <FaStore className="text-3xl md:text-5xl" />
                         </div>
                         <div className="stat-title pr-5">
                             Public Gists
@@ -167,74 +195,9 @@ function User() {
                     </div>
                 </div>
 
-                <Repo repos={repos}/>
+                {repos && repos.length ? <Repo repos={repos} /> : ''}
             </div>
         </>
-
-        // <>
-
-        //     Hireable:{' '}
-        //     {hireable ? (
-        //         <i className='fas fa-check text-success' />
-        //     ) : (
-        //         <i className='fas fa-times-circle text-danger' />
-        //     )}
-        //     <div className='card grid-2'>
-        //         <div className='all-center'>
-        //             <img
-        //                 src={avatar_url}
-        //                 className='round-img'
-        //                 alt=''
-        //                 style={{ width: '150px' }}
-        //             />
-        //             <h1>{name}</h1>
-        //             <p>Location: {location}</p>
-        //         </div>
-        //         <div>
-        //             {bio && (
-        //                 <>
-        //                     <h3>Bio</h3>
-        //                     <p>{bio}</p>
-        //                 </>
-        //             )}
-        //             <a href={html_url} className='btn btn-dark my-1'>
-        //                 Visit Github Profile
-        //             </a>
-        //             <ul>
-        //                 <li>
-        //                     {login && (
-        //                         <>
-        //                             <strong>Username: </strong> {login}
-        //                         </>
-        //                     )}
-        //                 </li>
-
-        //                 <li>
-        //                     {company && (
-        //                         <>
-        //                             <strong>Company: </strong> {company}
-        //                         </>
-        //                     )}
-        //                 </li>
-
-        //                 <li>
-        //                     {blog && (
-        //                         <>
-        //                             <strong>Website: </strong> {blog}
-        //                         </>
-        //                     )}
-        //                 </li>
-        //             </ul>
-        //         </div>
-        //     </div>
-        //     <div className='card text-center'>
-        //         <div className='badge badge-primary'>Followers: {followers}</div>
-        //         <div className='badge badge-success'>Following: {following}</div>
-        //         <div className='badge badge-light'>Public Repos: {public_repos}</div>
-        //         <div className='badge badge-dark'>Public Gists: {public_gists}</div>
-        //     </div>
-        //     <Repos repos={repos} />
-        // </>
     )
 }
 

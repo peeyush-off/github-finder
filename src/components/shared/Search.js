@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 
-function Search({ serachProps: { setLoading, clearUsers, getUsers }, displayAlert }) {
+function Search({ serachProps: { setLoading, clearUsers, getUsersList }, displayAlert }) {
 
   const [text, setText] = useState('')
 
@@ -18,7 +18,7 @@ function Search({ serachProps: { setLoading, clearUsers, getUsers }, displayAler
       return
     }
     setLoading()
-    getUsers(text)
+    getUsersList(text)
 
   }
 
