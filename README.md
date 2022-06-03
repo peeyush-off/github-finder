@@ -4,6 +4,7 @@
 
 > This app uses Tailwind CSS and daisyUI component library.
 
-[Live demo of app](https://github-finder-nu-liard.vercel.app).
+<a href="https://github-finder-nu-liard.vercel.app" target="_blank">Live demo of app</a>
+
 
 
