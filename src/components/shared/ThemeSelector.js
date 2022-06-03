@@ -1,7 +1,16 @@
+import { useState } from 'react'
 import { IoIosArrowDown } from 'react-icons/io'
 
 
 function ThemeSelector({ themeTypes, onThemeUpdate }) {
+
+    //Default state: index of business theme
+    const [selected, setSelected] = useState(23)
+
+    const handleUpdate = (val, index) => {
+        setSelected(index)
+        onThemeUpdate(val)
+    }
 
     return (
         <div className='dropdown dropdown-end'>
@@ -10,8 +19,7 @@ function ThemeSelector({ themeTypes, onThemeUpdate }) {
                 <div className="grid grid-cols-1 gap-3 p-3">
                     {themeTypes.map((val, index) => {
                         return (
-                            <div onClick={() => onThemeUpdate(val)} key={index} className="outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2" data-set-theme={val}>
-
+                            <div onClick={() => handleUpdate(val, index)} key={index} className={`outline-base-content overflow-hidden rounded-lg outline-2 outline-offset-2 ${selected === index ? 'outline' : ''}`} data-set-theme={val}>
                                 <div data-theme={val} className="bg-base-100 text-base-content w-full cursor-pointer font-sans"><div className="grid grid-cols-5 grid-rows-3"><div className="col-span-5 row-span-3 row-start-1 flex gap-1 py-3 px-4"><div className="flex-grow text-sm font-bold">{val.toUpperCase()}</div> <div className="flex flex-shrink-0 flex-wrap gap-1"><div className="bg-primary w-2 rounded"></div> <div className="bg-secondary w-2 rounded"></div> <div className="bg-accent w-2 rounded"></div> <div className="bg-neutral w-2 rounded"></div></div></div></div></div>
                             </div>
                         )

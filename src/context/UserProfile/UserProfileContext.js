@@ -6,7 +6,7 @@ const UserProfileContext = createContext()
 export const UserProfileContextProvider = ({ children }) => {
 
     const initialState = {
-        theme: 'dark'
+        theme: 'business'
     }
 
     const [state, dispatch] = useReducer(UserProfileReducer, initialState)
